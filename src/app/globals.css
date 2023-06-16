@@ -2,26 +2,237 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+/* @layer base {
+  h1 {
+    @apply text-2xl;
   }
-}
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+  a {
+    @apply text-blue-600 underline;
+  }
+} */
 
 body {
-  color: rgb(var(--foreground-rgb));
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    103.56deg,
+    rgba(162, 238, 255, 0.1) -1.24%,
+    rgba(0, 167, 255, 0.1) 100%
+  );
+}
+input:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+.home-header-text {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 38px;
+}
+.insurance-card-full {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  min-height: 461px;
+  padding: 1.5rem 0.5rem;
+  /* shadow-cards-green */
+  filter: drop-shadow(0px 6px 10px rgba(44, 103, 75, 0.1));
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.insurance-card {
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+  gap: 20px;
+  width: 287px;
+  height: 461px;
+  background: #ffffff;
+  border-radius: 30px;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.insurance-card-image {
+  width: 141.38px;
+  height: 115px;
+}
+.insurance-card > h6 {
+  font-weight: 600;
+  font-size: 18px;
+}
+.insurance-card > p {
+  text-align: center;
+}
+.insurance-card-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px;
+  width: 150px;
+  height: 50px;
+  border-radius: 100px;
+  border: 1px solid;
+  /* border-image-source: linear-gradient(
+    101.27deg,
+    #9af02d -1.28%,
+    #47cfe1 104.86%
+  ); */
+}
+.insurance-card-btn:hover {
+  background: linear-gradient(101.27deg, #9af02d -1.28%, #47cfe1 104.86%);
+}
+.insurance-main {
+  height: calc(100vh - 75px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.health-header-text {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 38px;
+  text-align: center;
+  padding: 1rem;
+}
+.select-health-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  gap: 12px;
+  width: 605px;
+  min-height: 361px;
+  background: #ffffff;
+  /* card-shadow-blue */
+  box-shadow: 0px 6px 10px rgba(0, 86, 215, 0.06);
+  border-radius: 30px;
+}
+.radio-health-select {
+  padding: 0 2rem 0 1rem;
+  margin: 0.5rem;
+  border: 1px solid;
+  border-radius: 10px;
+}
+.date-pick {
+  width: 49%;
+  padding: 0.5rem;
+  border: 1px solid #d5d8de;
+  border-radius: 10px;
+}
+.add-salary {
+  width: 49%;
+  padding: 0.5rem;
+  border: 1px solid #d5d8de;
+  border-radius: 10px;
+}
+.add-emirate {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d5d8de;
+  border-radius: 10px;
+}
+.insurance-next-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px;
+  width: 150px;
+  height: 40px;
+  border-radius: 100px;
+  border: 1px solid;
+}
+.insurance-next-btn:hover,
+.insurance-back-btn:hover,
+.insurance-start-over-btn:hover {
+  background: linear-gradient(101.27deg, #9af02d -1.28%, #47cfe1 104.86%);
+}
+.insurance-back-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  width: 115px;
+  height: 32px;
+  border-radius: 100px;
+  background: #ffffff;
+  opacity: 0.8;
+  box-shadow: 0px 6px 10px rgba(0, 86, 215, 0.06);
+  position: absolute;
+  top: 16px;
+  left: 26px;
+}
+.insurance-start-over-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  width: 115px;
+  height: 32px;
+  border-radius: 100px;
+  background: #ffffff;
+  opacity: 0.8;
+  box-shadow: 0px 6px 10px rgba(0, 86, 215, 0.06);
+  position: absolute;
+  top: 16px;
+  right: 26px;
+}
+.select-health-company {
+  display: flex;
+  /* flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  padding: 40px;
+  gap: 12px;
+  width: 100%;
+  min-height: 361px;
+  background: #ffffff;
+  box-shadow: 0px 6px 10px rgba(0, 86, 215, 0.06);
+  border-radius: 30px;
+}
+.search-type {
+  height: 40px;
+  border: 1px solid #d5d8de;
+  border-radius: 10px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.apply-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  width: 100px;
+  height: 30px;
+  border-radius: 100px;
+  /* border: 1px solid; */
+  background: linear-gradient(101.27deg, #9af02d -1.28%, #47cfe1 104.86%);
+}
+.view-download-btn {
+  font-size: 14px;
+  border: 1px solid #D5D8DE;
+  border-radius: 100px;
+  padding: 4px;
+  min-width: 70px;
+  color: #353C47
 }
