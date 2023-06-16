@@ -1,5 +1,5 @@
 "use client";
-import * as React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -10,6 +10,7 @@ import Header from "../header";
 import HealthFor from "./healthfor";
 import PersonalInfo from "./personalinfo";
 import Company from "./company";
+import axios from "axios";
 
 const steps = [
   {
@@ -25,6 +26,7 @@ const steps = [
 
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const [quotationList, setQuotationList] = React.useState(0);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -38,6 +40,25 @@ export default function HorizontalLinearStepper() {
     setActiveStep(0);
   };
 
+  const getHealthQuotation = () => {
+    axios
+      .post(
+        "https://api01.wecover.online/api/HealthQuotationService/HealthQuotationList",
+        {
+          reqType: "HealthQuotationList",
+          data: {
+            qrefNo: 36417,
+            insuranceTypeId: 3,
+          },
+        }
+      )
+      .then((res) => {
+        setQuotationList(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   function _renderStepContent(step) {
     switch (step) {
       case 0:
@@ -48,10 +69,17 @@ export default function HorizontalLinearStepper() {
             handleNext={handleNext}
             handleBack={handleBack}
             handleReset={handleReset}
+            getHealthQuotation={getHealthQuotation}
           />
         );
       case 2:
-        return <Company handleBack={handleBack} handleReset={handleReset} />;
+        return (
+          <Company
+            handleBack={handleBack}
+            handleReset={handleReset}
+            quotationList={quotationList}
+          />
+        );
       default:
         return <div>Not Found</div>;
     }
@@ -92,7 +120,7 @@ export default function HorizontalLinearStepper() {
                   const stepProps = {};
                   const labelProps = {};
                   return (
-                    <Step key={label.labelA} {...stepProps}>
+                    <Step key={index} {...stepProps}>
                       <StepLabel {...labelProps}>{label.labelA}</StepLabel>
                     </Step>
                   );

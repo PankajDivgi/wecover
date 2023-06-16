@@ -4,9 +4,18 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ReplayIcon from '@mui/icons-material/Replay';
+import ReplayIcon from "@mui/icons-material/Replay";
 
-const PersonalInfo = ({handleBack, handleNext, handleReset}) => {
+const PersonalInfo = ({
+  handleBack,
+  handleNext,
+  handleReset,
+  getHealthQuotation,
+}) => {
+  const handleQuotationNext = () => {
+    handleNext();
+    getHealthQuotation();
+  };
   return (
     <>
       <button className="insurance-back-btn" onClick={handleBack}>
@@ -104,7 +113,7 @@ const PersonalInfo = ({handleBack, handleNext, handleReset}) => {
               <FormControlLabel value="No" control={<Radio />} label="No" />
             </RadioGroup>
           </div>
-          <button className="insurance-next-btn" onClick={handleNext}>
+          <button className="insurance-next-btn" onClick={handleQuotationNext}>
             Next <ArrowForwardIcon />
           </button>
         </div>

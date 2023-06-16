@@ -15,12 +15,15 @@ import CompanyLogo1 from "../../Images/company1.png";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SimCardDownloadIcon from "@mui/icons-material/SimCardDownload";
 
-const Company = ({ handleBack, handleReset }) => {
+const Company = ({ handleBack, handleReset, quotationList }) => {
   const [expanded, setExpanded] = React.useState(false);
+  const [seeMore, setSeeMore] = React.useState("");
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+  const dataList = quotationList?.data?.quotes;
+  console.log("quotationList", quotationList?.data?.quotes);
   return (
     <>
       <button className="insurance-back-btn" onClick={handleBack}>
@@ -148,85 +151,163 @@ const Company = ({ handleBack, handleReset }) => {
               </Accordion>
             </div>
           </div>
-          <div className="flex w-4/5">
-            <div style={{ width: "90px" }}>
-              <Image
-                src={CompanyLogo1}
-                width={130}
-                height={60}
-                alt="Company Logo"
-              />
-            </div>
-            <div className="w-full px-4">
-              <div className="flex justify-between items-center w-full">
-                <div>
-                  <h1>Plan: Basic</h1>
-                  <p style={{ fontSize: "12px", color: "#919EAB" }}>
-                    Sakoon Insuranse
-                  </p>
+          <div
+            className="w-4/5"
+            style={{ overflow: "scroll", height: "calc(100vh - 332px)" }}
+          >
+            {quotationList?.data?.quotes.map((at) => (
+              <div
+                key={at.id}
+                className="flex p-2 mb-2"
+                style={{ border: "1px solid #F2F2F2", borderRadius: "20px" }}
+              >
+                <div style={{ width: "90px" }}>
+                  <Image
+                    src={at.companyLogo}
+                    width={130}
+                    height={60}
+                    alt="Company Logo"
+                  />
                 </div>
-                <div className="flex justify-center items-center">
-                  <p style={{ fontSize: "12px", color: "#919EAB" }}>
-                    Final Price:
-                  </p>
-                  <p className="ml-2" style={{ fontSize: "12px" }}>
-                    AED
-                  </p>
-                  <h1 className="ml-2" style={{ fontSize: "26px" }}>
-                    48
-                  </h1>
-                </div>
-              </div>
-              <div className="flex justify-between items-center w-full mt-2">
-                <div>
-                  <p style={{ fontSize: "12px", color: "#919EAB" }}>
-                    Max. Annual Coverage
-                  </p>
-                  <p>AED 150000</p>
-                </div>
-                <div>
-                  <p style={{ fontSize: "12px", color: "#919EAB" }}>
-                    Network Coverage
-                  </p>
-                  <p>134 Hospitals</p>
-                </div>
-                <div>
-                  <p style={{ fontSize: "12px", color: "#919EAB" }}>Coverage</p>
-                  <p>UAE</p>
-                </div>
-              </div>
-              <div className="flex items-center w-full mt-2">
-                <div>
-                  <p style={{ fontSize: "12px", color: "#919EAB" }}>
-                    Network List
-                  </p>
-                  <div>
-                    <button className="view-download-btn">
-                      <LocationOnIcon style={{ fontSize: "14px" }} /> View
-                    </button>
-                    <button className="view-download-btn ml-2">
-                      <SimCardDownloadIcon style={{ fontSize: "14px" }} /> View
-                    </button>
+                <div className="w-full px-4">
+                  <div className="flex justify-between items-center w-full">
+                    <div>
+                      <h1>{at.planName}</h1>
+                      <p style={{ fontSize: "12px", color: "#919EAB" }}>
+                        {at.companyName}
+                      </p>
+                    </div>
+                    <div className="flex justify-center items-center">
+                      <p style={{ fontSize: "12px", color: "#919EAB" }}>
+                        Final Price:
+                      </p>
+                      <p className="ml-2" style={{ fontSize: "12px" }}>
+                        AED
+                      </p>
+                      <h1 className="ml-2" style={{ fontSize: "26px" }}>
+                        {at.startingPrice}
+                      </h1>
+                    </div>
                   </div>
-                </div>
-                <div className="ml-4">
-                  <p style={{ fontSize: "12px", color: "#919EAB" }}>
-                    Table of Benefits
-                  </p>
-                  <div>
-                    <button className="view-download-btn">
-                      <LocationOnIcon style={{ fontSize: "14px" }} /> View
-                    </button>
-                    <button className="view-download-btn ml-2">
-                      <SimCardDownloadIcon style={{ fontSize: "14px" }} /> View
-                    </button>
+                  <div className="flex justify-between items-center w-full mt-2">
+                    <div>
+                      <p style={{ fontSize: "12px", color: "#919EAB" }}>
+                        Max. Annual Coverage
+                      </p>
+                      <p>AED {at.coverages}</p>
+                    </div>
+                    <div>
+                      <p style={{ fontSize: "12px", color: "#919EAB" }}>
+                        Network Coverage
+                      </p>
+                      <p>134 Hospitals</p>
+                    </div>
+                    <div>
+                      <p style={{ fontSize: "12px", color: "#919EAB" }}>
+                        Coverage
+                      </p>
+                      <p>UAE</p>
+                    </div>
                   </div>
+                  {at.id === seeMore ? (
+                    <>
+                      <div className="mt-2">
+                        <p style={{ fontSize: "12px", color: "#919EAB" }}>
+                          Add-Ons
+                        </p>
+                        <div className="flex">
+                          <p style={{ fontSize: "12px" }}>Dental Care</p>
+                          <p
+                            className="ml-10"
+                            style={{ fontSize: "12px", color: "#919EAB" }}
+                          >
+                            +AED 80
+                          </p>
+                        </div>
+                        <div className="flex">
+                          <p style={{ fontSize: "12px" }}>Vision Care</p>
+                          <p
+                            className="ml-10"
+                            style={{ fontSize: "12px", color: "#919EAB" }}
+                          >
+                            +AED 30
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-2">
+                        <p style={{ fontSize: "12px", color: "#919EAB" }}>
+                          What is Covered
+                        </p>
+                        <p style={{ fontSize: "12px" }}>
+                          Geographical scope of coverage UAE
+                        </p>
+                        <p style={{ fontSize: "12px", color: "#919EAB" }}>
+                          +AED 100,000
+                        </p>
+                        <p style={{ fontSize: "12px" }}>
+                          Laboratory test services
+                        </p>
+                        <p style={{ fontSize: "12px", color: "#919EAB" }}>
+                          +AED 10,000
+                        </p>
+                      </div>
+                      <div className="flex items-center w-full mt-2">
+                        <div>
+                          <p style={{ fontSize: "12px", color: "#919EAB" }}>
+                            Network List
+                          </p>
+                          <div>
+                            <button className="view-download-btn">
+                              <LocationOnIcon style={{ fontSize: "14px" }} />{" "}
+                              View
+                            </button>
+                            <button className="view-download-btn ml-2">
+                              <SimCardDownloadIcon
+                                style={{ fontSize: "14px" }}
+                              />{" "}
+                              Download
+                            </button>
+                          </div>
+                        </div>
+                        <div className="ml-4">
+                          <p style={{ fontSize: "12px", color: "#919EAB" }}>
+                            Table of Benefits
+                          </p>
+                          <div>
+                            <button className="view-download-btn">
+                              <LocationOnIcon style={{ fontSize: "14px" }} />{" "}
+                              View
+                            </button>
+                            <button className="view-download-btn ml-2">
+                              <SimCardDownloadIcon
+                                style={{ fontSize: "14px" }}
+                              />{" "}
+                              Download
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : null}
+                </div>
+                <div className="flex flex-col" style={{ width: "110px" }}>
+                  <button className="apply-btn">Apply</button>
+                  <div className="flex flex-col justify-center align-center mt-4">
+                    <p
+                      className="text-center"
+                      style={{ fontSize: "12px", color: "#919EAB" }}
+                    >
+                      Compare
+                    </p>
+                    <input type="checkbox" />
+                  </div>
+                  <button className="mt-4" onClick={() => setSeeMore(at.id)}>
+                    {at.id === seeMore ? "" :"See more"}
+                  </button>
+                  {/* <button className="mt-auto" onClick={()=>setSeeMore(0)}>See less</button> */}
                 </div>
               </div>
-            </div>
-            <div className="flex justify-center" style={{ width: "110px" }}>
-              <button className="apply-btn">Apply</button>
-            </div>
+            ))}
           </div>
         </div>
       </div>
