@@ -11,7 +11,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Image from "next/image";
-import CompanyLogo1 from "../../Images/company1.png";
+// import CompanyLogo1 from "../../Images/company1.png";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SimCardDownloadIcon from "@mui/icons-material/SimCardDownload";
 
@@ -19,22 +19,26 @@ const Company = ({ handleBack, handleReset, quotationList }) => {
   const [expanded, setExpanded] = React.useState(false);
   const [seeMore, setSeeMore] = React.useState("");
 
+  // to open and close accorian 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-  const dataList = quotationList?.data?.quotes;
-  console.log("quotationList", quotationList?.data?.quotes);
+  // const dataList = quotationList?.data?.quotes;
+  // console.log("quotationList", quotationList?.data?.quotes);
   return (
     <>
+    {/* back button */}
       <button className="insurance-back-btn" onClick={handleBack}>
         <ArrowBackIcon /> Back
       </button>
+      {/* reset button */}
       <button className="insurance-start-over-btn" onClick={handleReset}>
         <ReplayIcon /> Start Over
       </button>
       <div className="flex justify-center items-center pt-10">
         <div className="select-health-company">
           <div style={{ width: "20%" }}>
+            {/* search bar */}
             <div className="search-type">
               <SearchIcon />{" "}
               <input
@@ -43,6 +47,7 @@ const Company = ({ handleBack, handleReset, quotationList }) => {
                 className="w-full"
               />
             </div>
+            {/* Accordion start */}
             <div>
               <Accordion
                 expanded={expanded === "panel1"}
@@ -150,7 +155,9 @@ const Company = ({ handleBack, handleReset, quotationList }) => {
                 </AccordionDetails>
               </Accordion>
             </div>
+            {/* Accordion end */}
           </div>
+          {/* map all data from quotation list*/}
           <div
             className="w-4/5"
             style={{ overflow: "scroll", height: "calc(100vh - 332px)" }}

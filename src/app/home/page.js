@@ -16,6 +16,7 @@ const Home = () => {
           <h1 className="home-header-text">Which Insurance would you like?</h1>
         </div>
         <div className="insurance-card-full">
+          {/* select insurance card */}
           <div className="insurance-card">
             <Image
               src={Insurance1}
@@ -35,10 +36,12 @@ const Home = () => {
                 195.00
               </span>
             </p>
+            {/* Link to Health Insurance Page */}
             <Link href="/health" className="insurance-card-btn">
               Select
             </Link>
           </div>
+          {/* 2nd card */}
           <div className="insurance-card">
             <Image
               src={Insurance2}
@@ -58,10 +61,12 @@ const Home = () => {
                 450.00
               </span>
             </p>
+            {/* Link to Health Insurance Page */}
             <Link href="/health" className="insurance-card-btn">
               Select
             </Link>
           </div>
+          {/* 3rd card */}
           <div className="insurance-card">
             <Image
               src={Insurance3}
@@ -81,6 +86,7 @@ const Home = () => {
                 210.00
               </span>
             </p>
+            {/* Link to Health Insurance Page */}
             <Link href="/health" className="insurance-card-btn">
               Select
             </Link>

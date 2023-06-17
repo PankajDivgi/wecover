@@ -11,9 +11,11 @@ import ReplayIcon from "@mui/icons-material/Replay";
 const HealthFor = ({ handleNext, handleReset }) => {
   return (
     <>
+      {/* back button */}
       <Link href="/" className="insurance-back-btn">
         <ArrowBackIcon /> Back
       </Link>
+      {/* reset button */}
       <button className="insurance-start-over-btn" onClick={handleReset}>
         <ReplayIcon /> Start Over
       </button>
@@ -45,6 +47,7 @@ const HealthFor = ({ handleNext, handleReset }) => {
               />
             </RadioGroup>
           </FormControl>
+          {/* next to personal info page */}
           <button className="insurance-next-btn" onClick={handleNext}>
             Next <ArrowForwardIcon />
           </button>

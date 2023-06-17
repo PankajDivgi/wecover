@@ -12,15 +12,18 @@ const PersonalInfo = ({
   handleReset,
   getHealthQuotation,
 }) => {
+  // onclick next, function to get health quotation page
   const handleQuotationNext = () => {
     handleNext();
     getHealthQuotation();
   };
   return (
     <>
+      {/* back button */}
       <button className="insurance-back-btn" onClick={handleBack}>
         <ArrowBackIcon /> Back
       </button>
+      {/* reset button */}
       <button className="insurance-start-over-btn" onClick={handleReset}>
         <ReplayIcon /> Start Over
       </button>
@@ -113,6 +116,7 @@ const PersonalInfo = ({
               <FormControlLabel value="No" control={<Radio />} label="No" />
             </RadioGroup>
           </div>
+          {/* next to quotation company page */}
           <button className="insurance-next-btn" onClick={handleQuotationNext}>
             Next <ArrowForwardIcon />
           </button>

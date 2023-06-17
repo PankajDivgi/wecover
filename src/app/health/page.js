@@ -1,10 +1,9 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Header from "../header";
 import HealthFor from "./healthfor";
@@ -12,6 +11,7 @@ import PersonalInfo from "./personalinfo";
 import Company from "./company";
 import axios from "axios";
 
+// steps in component
 const steps = [
   {
     labelA: null,
@@ -28,18 +28,19 @@ export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [quotationList, setQuotationList] = React.useState(0);
 
+  // to move next step
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
-
+  // to move back in stepper
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
+  // reset the stepper
   const handleReset = () => {
     setActiveStep(0);
   };
-
+  // get data of health quotation company
   const getHealthQuotation = () => {
     axios
       .post(
@@ -58,7 +59,7 @@ export default function HorizontalLinearStepper() {
       })
       .catch((err) => console.log(err));
   };
-
+  // content inside the stepper
   function _renderStepContent(step) {
     switch (step) {
       case 0:
@@ -84,6 +85,7 @@ export default function HorizontalLinearStepper() {
         return <div>Not Found</div>;
     }
   }
+  // content top of the stepper
   function _renderStepContentTop(step) {
     switch (step) {
       case 0:
